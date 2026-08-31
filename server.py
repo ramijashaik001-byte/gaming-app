@@ -3,7 +3,7 @@ import json
 import http.server
 import socketserver
 
-PORT = 8000
+PORT = 8001
 SCORES_FILE = "scores.json"
 
 class ArcadeRequestHandler(http.server.SimpleHTTPRequestHandler):
