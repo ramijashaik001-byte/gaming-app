@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberArcade - Cyberspace Gaming Cabinet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- CRT Vignette Filter -->
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
+
+    <div class="container">
+        <!-- Main Header -->
+        <header>
+            <div class="logo">
+                <span class="neon-pink">CYBER</span><span class="neon-cyan">ARCADE</span>
+            </div>
+            <div class="system-status">
+                <span class="status-indicator online"></span>
+                <span class="status-text font-mono">GRID: ONLINE | PORT: 8000</span>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Left Side: Interactive Game Cabinet -->
+            <section class="cabinet-section">
+                <div class="cabinet-frame">
+                    <div class="screen-bezel">
+                        <div class="screen-inner">
+                            <canvas id="gameCanvas" width="700" height="480"></canvas>
+
+                            <!-- Overlay Menus -->
+                            <div id="startOverlay" class="screen-overlay active">
+                                <h1 class="glow-cyan font-title">SELECT GAME</h1>
+                                <p class="font-mono text-gray">Choose a grid module from the dashboard to begin upload...</p>
+                                <div class="action-hint blink">AWAITING CORRUPTION INPUT</div>
+                            </div>
+
+                            <div id="countdownOverlay" class="screen-overlay hidden">
+                                <div id="countdownNum" class="countdown-text glow-pink">3</div>
+                            </div>
+
+                            <div id="gameoverOverlay" class="screen-overlay hidden">
+                                <h1 class="glow-red font-title">SYSTEM FAILURE</h1>
+                                <h2 class="glow-pink font-mono" id="finalScoreDisplay">SCORE: 0000</h2>
+                                <p class="font-mono text-gray">Vitals offline. Cyberdeck core overloaded.</p>
+                                <div class="input-group">
+                                    <input type="text" id="playerNameInput" placeholder="ENTER INITIALS" maxlength="8" class="font-mono">
+                                    <button id="submitScoreBtn" class="glow-btn pink font-mono">SUBMIT PROFILE</button>
+                                </div>
+                                <button id="restartBtn" class="glow-btn cyan font-mono">REBOOT MODULE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Dashboard Controllers -->
+            <aside class="dashboard-aside">
+                <!-- Game Selector -->
+                <div class="panel select-panel">
+                    <h2 class="panel-title font-mono text-cyan">GAME MODULES</h2>
+                    <div class="game-buttons">
+                        <button id="btnSnake" class="game-select-btn font-mono" data-game="Snake">
+                            <span class="btn-glow green"></span>
+                            NEON SNAKE
+                        </button>
+                        <button id="btnSpace" class="game-select-btn font-mono" data-game="SpaceDefenders">
+                            <span class="btn-glow pink"></span>
+                            SPACE DEFENDERS
+                        </button>
+                        <button id="btnBrick" class="game-select-btn font-mono" data-game="BrickBreaker">
+                            <span class="btn-glow cyan"></span>
+                            CYBER BREAKOUT
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leaderboard -->
+                <div class="panel scores-panel">
+                    <h2 class="panel-title font-mono text-pink">GRID LEADERBOARD</h2>
+                    <div class="leaderboard-table-container">
+                        <table id="leaderboardTable" class="font-mono">
+                            <thead>
+                                <tr>
+                                    <th>RANK</th>
+                                    <th>AGENT</th>
+                                    <th>SCORE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboardBody">
+                                <!-- Loaded dynamically via AJAX -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Controls & Audio System -->
+                <div class="panel controls-panel">
+                    <h2 class="panel-title font-mono text-yellow">AUDIO & SYSTEM</h2>
+                    <div class="audio-control-row">
+                        <button id="btnMute" class="control-btn font-mono">MUTE</button>
+                        <input type="range" id="volSlider" min="0" max="100" value="30">
+                        <span id="volVal" class="font-mono text-yellow">30%</span>
+                    </div>
+                    <div class="controls-guide font-mono">
+                        <h3 class="text-gray">KEYBOARD MAP:</h3>
+                        <div id="guideText">Select a game above to load controls.</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Application Javascript Files -->
+    <script src="audio.js"></script>
+    <script src="particle.js"></script>
+    <script src="games/snake.js"></script>
+    <script src="games/space_defenders.js"></script>
+    <script src="games/brick_breaker.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
