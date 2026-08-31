@@ -1,0 +1,12 @@
+{
+  "name": "cyberarcade",
+  "version": "1.0.0",
+  "description": "Cyberpunk retro game hub served via python localhost",
+  "main": "server.py",
+  "scripts": {
+    "start": "python server.py"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}
